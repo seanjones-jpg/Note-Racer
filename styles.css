@@ -1,0 +1,112 @@
+*{
+    color: blanchedalmond;
+    font-weight: bold;
+    background-color:darkolivegreen;
+}
+
+:root{
+    --line-offset: 10px;
+}
+
+#button{
+    width: 100px;
+    height: 50px;
+    background-color: green;
+    position: absolute;
+    left: calc(50% - 50px);
+    top: calc(50% - 25px);
+}
+
+#replayButton{
+    width: 100px;
+    height: 50px;
+    background-color: green;
+}
+
+#gameDiv{
+    display:none;
+}
+
+#noteSpan{
+    display: none;
+}
+
+#resultDiv{
+    display: none;
+}
+
+.staff{
+    margin-bottom: 20px;
+    width: 200px;
+    height: 90px;
+    background-color: blanchedalmond;
+}
+
+.line{
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.line-1{
+    position: relative;
+    top: calc(2*var(--line-offset));
+}
+
+.line-2{
+    position: relative;
+    top: calc(3*var(--line-offset));
+}
+
+.line-3{
+    position: relative;
+    top: calc(4*var(--line-offset));
+}
+
+.line-4{
+    position: relative;
+    top: calc(5*var(--line-offset));
+}
+
+.line-5{
+    position: relative;
+    top: calc(6*var(--line-offset));
+}
+
+#note{
+    width: 12px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    position: relative;
+    left: calc(50% - 6px);
+}
+
+.noteGuess{
+    text-align: center;
+    width: 20px;
+    padding: auto;
+}
+
+.noteGuess:active{
+    border: none;
+}
+
+h1{
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.gameplayContainer{
+    width: 50%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 25%;
+    text-align: center;
+}
+.results{
+    text-align: center;
+    margin-top: 35%;
+}
+
