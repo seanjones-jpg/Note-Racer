@@ -13,6 +13,15 @@
     --note-guess-height: 15px;
     --button-width: 100px;
     --button-height: 50px;
+    --multiplier-border-1x: solid 2px red;
+    --multiplier-border-2x: solid 2PX orange;
+    --multiplier-border-3x: solid 2px green;
+    --multiplier-border-4x: solid 2px blue;
+    --multiplier-border-5x: solid 2px indigo;
+    --multiplier-border-6x: solid 2px violet;
+    --multiplier-border-7x: solid 2px #f37186;
+    --multiplier-border-8x: solid 2px #ff7700;
+    
 }
 
 #button{
@@ -115,12 +124,19 @@
 .noteGuess:active{
     border: none;
 }
-
+#treble-clef{
+    height: var(--staff-height);
+    width: auto;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background: blanchedalmond;
+}
 h1{
     font-size: 15px;
 }
 
-#raceLength, option:hover{
+#raceLength{
     text-align: center;
     border-radius: 20px;
     border: 1px solid blanchedalmond;
@@ -135,7 +151,7 @@ h1{
     position: absolute;
     top: -30%;
     left: 80%;
-    width: 100px;
+    width: 120px;
     border-radius: 10px;
     border: solid 2px green;
     background-color: #135a15;
@@ -145,7 +161,7 @@ h1{
     padding: 5px;
 }
 
-#multiplier{
+#multiplier, #gameScoreSpan{
     background-color: #135a15;
 }
 #title{
