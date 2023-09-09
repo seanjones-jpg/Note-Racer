@@ -10,7 +10,8 @@ var startTime = 0;
 var endTime = 0;
 var raceLength = 0;
 var multiplier = 1;
-var streak = 0;
+var streak = 1;
+var noteStatus = 'good';
 const STREAK_FACTOR = 4;
 const MULTIPLIER_MAX = 8;
 
@@ -18,7 +19,39 @@ function reset(){
     iterations = 0;
     score = 0;
     noteHit = 0;
-    multiplier = 0;
+    multiplier = 1;
+    document.getElementById('gameScoreSpan').innerHTML = score;
+}
+
+function pulseOn(item, scale){
+    document.getElementById(item).style.scale = scale;
+}
+
+function pulseOff(item, scale){
+    document.getElementById(item).style.scale = scale;
+}
+
+function colorChange(target, color){
+    document.getElementById(target).style['background-color'] = color;
+}
+
+function noteStyling(noteStatus){
+    pulseOn('note', '150%');
+       
+
+    if (noteStatus == 1){
+        colorChange('note', 'green')
+        setTimeout(() => {
+            colorChange('note', 'black')
+            pulseOff('note', '100%');
+                      }, "200");
+        }else if (noteStatus == 0){
+            colorChange('note', 'red')
+        setTimeout(() => {
+            colorChange('note', 'black')
+            pulseOff('note', '100%');
+        }, "200");
+    }
 }
 
 function startGame(){
@@ -58,7 +91,7 @@ function displayLetter() {
         var notesPerMin = Math.round(noteHit / elapsedTime * 60);
 
         document.getElementById('scoreSpan').innerHTML = score; // display score
-        document.getElementById('notesHitSpan').innerHTML = noteHit;
+        document.getElementById('notesHitSpan').innerHTML = noteHit + '/' + raceLength;
         document.getElementById('timeSpan').innerHTML = elapsedTime + ' seconds'; // display time elapsed
         document.getElementById('notesPerMin').innerHTML = notesPerMin;
 
@@ -68,13 +101,14 @@ function displayLetter() {
         var noteLocation = Math.floor(Math.random() * 9);
         var index = noteLocation%7;
         note = notes[index];
-        notesRemaining = raceLength - iterations;
+        notesRemaining = raceLength - iterations + 1;
         document.getElementById('noteSpan').innerHTML = note;
         document.getElementById('notesRemainingSpan').innerHTML = notesRemaining;
         document.getElementById('note').style.top = String(parseInt(54 - (noteLocation * 6)))+ 'px';
         document.getElementById('multiplier').innerHTML = multiplier;
         document.getElementById('note-guess').value = '';
         document.getElementById('note-guess').focus();
+        
 
     }
 
@@ -82,19 +116,23 @@ function displayLetter() {
 
 function checkInput() {
     var input = document.getElementById('note-guess').value;
-
+    document.getElementById('gameScoreSpan').innerHTML = score;
+    document.getElementById('multiplierHeader').style.border = 'var(--multiplier-border-' + String(multiplier) +'x)';
     if(input == note){
         score = score + 1*multiplier;
         noteHit++;
         streak++;
+        noteStatus = 1;
     } else{
-        streak = 0;
+        streak = 1;
+        noteStatus = 0;
         if(score > 0){
         score--;
         }else{
             score = score;
         }
     }
+    noteStyling(noteStatus);
     scoreMultiplier();
     displayLetter();
 }
