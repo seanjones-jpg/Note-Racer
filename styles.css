@@ -1,7 +1,7 @@
 *{
-    color: blanchedalmond;
+    color: var(--highlight);
     font-weight: bold;
-    background-color:darkolivegreen;
+    background-color:var(--background);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -21,41 +21,34 @@
     --multiplier-border-6x: solid 2px violet;
     --multiplier-border-7x: solid 2px #f37186;
     --multiplier-border-8x: solid 2px #ff7700;
+    --background: darkolivegreen; 
+    --highlight: blanchedalmond;
+    --button-color: green;
+    --lowlight: black;
     
 }
 
-#button{
-    width: var(--button-width);
-    height: var(--button-height);
-    background-color: green;
+#darkMode{
+    padding-top: 20px;
 }
 #startButton{
-    width: var(--button-width);
-    height: var(--button-height);
-    background-color: green;
     display: inline-block;
-
 }
+
 
 .button{
     width: var(--button-width);
     height: var(--button-height);
-    background-color: green;
+    background-color: var(--button-color);
     font-size: 8;
     border-radius: 20px;
+    border: 2px solid var(--highlight)
 }
 
-#gameDiv{
+#gameDiv, #noteSpan, #resultDiv{
     display:none;
 }
 
-#noteSpan{
-    display: none;
-}
-
-#resultDiv{
-    display: none;
-}
 
 .staff{
     position: absolute;
@@ -63,74 +56,64 @@
     left: calc(50% - var(--staff-width)/2);
     width:var(--staff-width);
     height: var(--staff-height);
-    background-color: blanchedalmond;
+    background-color: var(--highlight);
 }
 
 .line{
     position: relative;
     width: 100%;
     height: 2px;
-    background-color: black;
+    background-color: var(--lowlight);
 }
 
-.line-1{
-    position: relative;
+.line-1{  
     top: calc(2*var(--line-offset));
 }
 
 .line-2{
-    position: relative;
     top: calc(3*var(--line-offset));
 }
 
 .line-3{
-    position: relative;
     top: calc(4*var(--line-offset));
 }
 
 .line-4{
-    position: relative;
     top: calc(5*var(--line-offset));
 }
 
 .line-5{
-    position: relative;
     top: calc(6*var(--line-offset));
 }
 
 #note{
     width: 12px;
     height: 10px;
-    background-color: black;
+    background-color: var(--lowlight);
     border-radius: 50%;
     position: relative;
     left: calc(50% - 6px);
 }
 
 .noteGuess{
-    
-
     margin-top: 20px;
     text-align: center;
     width: var(--note-guess-width);
     height: var(--note-guess-height);
     position: absolute;
     top: calc(50% + var(--staff-height)/2);
-    left: calc(50% - var(--note-guess-width)/2);
-    
-    
+    left: calc(50% - var(--note-guess-width)/2); 
 }
 
-.noteGuess:active{
-    border: none;
-}
 #treble-clef{
     height: var(--staff-height);
     width: auto;
     position: absolute;
     top: 0%;
     left: 0%;
-    background: blanchedalmond;
+    background: transparent;
+    z-index: 2;
+    color: var(--lowlight);
 }
 h1{
     font-size: 15px;
@@ -139,30 +122,37 @@ h1{
 #raceLength{
     text-align: center;
     border-radius: 20px;
-    border: 1px solid blanchedalmond;
-    background-color: green;
+    border: 1px solid var(--highlight);
+    background-color: var(--button-color);
     margin-bottom: 40px;
 }
 
 #startScreen{
     text-align: center;
 }
+
 #multiplierHeader{
     position: absolute;
     top: -30%;
     left: 80%;
     width: 120px;
     border-radius: 10px;
-    border: solid 2px green;
-    background-color: #135a15;
-    box-shadow: 0px 2px 5px 2px darkgreen;
+    border: solid 2px var(--highlight);
+    background-color: var(--button-color);
+    box-shadow: 0px 2px 5px 2px var(--button-color);
     word-wrap: none;
     z-index: 2;
     padding: 5px;
 }
-
+#multiplier{
+    border: solid 2px var(--button-color);
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: var(--button-color);
+}
 #multiplier, #gameScoreSpan{
-    background-color: #135a15;
+    background-color: var(--button-color);
 }
 #title{
     font-size: 50px;
@@ -170,6 +160,6 @@ h1{
 
 .results{
     text-align: center;
-    margin-top: 35%;
+    margin-top: 20%;
 }
 
