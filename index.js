@@ -24,12 +24,14 @@ function lightToDark(){
         r.style.setProperty('--lowlight', '#93B1A6');
         r.style.setProperty('--highlight', '#183D3D');
         r.style.setProperty('--button-color', '#5C8374');
+        document.getElementById('darkmode').innerHTML = 'Light Mode';
     }else{
         lightMode = true;
         r.style.setProperty('--background', 'darkolivegreen');
         r.style.setProperty('--lowlight', 'black');
         r.style.setProperty('--highlight', 'blanchedalmond');
         r.style.setProperty('--button-color', 'green');
+        document.getElementById('darkmode').innerHTML = 'Dark Mode';
     }
     
 }
