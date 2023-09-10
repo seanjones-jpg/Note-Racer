@@ -12,15 +12,35 @@ var raceLength = 0;
 var multiplier = 1;
 var streak = 1;
 var noteStatus = 'good';
+var r = document.querySelector(':root');
+var lightMode = true;
 const STREAK_FACTOR = 4;
 const MULTIPLIER_MAX = 8;
 
-function reset(){
+function lightToDark(){
+    if(lightMode === true){
+        lightMode = false;
+        r.style.setProperty('--background', '#040D12');
+        r.style.setProperty('--lowlight', '#93B1A6');
+        r.style.setProperty('--highlight', '#183D3D');
+        r.style.setProperty('--button-color', '#5C8374');
+    }else{
+        lightMode = true;
+        r.style.setProperty('--background', 'darkolivegreen');
+        r.style.setProperty('--lowlight', 'black');
+        r.style.setProperty('--highlight', 'blanchedalmond');
+        r.style.setProperty('--button-color', 'green');
+    }
+    
+}
+
+function reset(){ //reset function resets all values and stylings
     iterations = 0;
     score = 0;
     noteHit = 0;
     multiplier = 1;
     document.getElementById('gameScoreSpan').innerHTML = score;
+    scoreMultiplier(true);
 }
 
 function pulseOn(item, scale){
@@ -37,18 +57,16 @@ function colorChange(target, color){
 
 function noteStyling(noteStatus){
     pulseOn('note', '150%');
-       
-
     if (noteStatus == 1){
         colorChange('note', 'green')
         setTimeout(() => {
-            colorChange('note', 'black')
+            colorChange('note', 'var(--lowlight)')
             pulseOff('note', '100%');
                       }, "200");
         }else if (noteStatus == 0){
             colorChange('note', 'red')
         setTimeout(() => {
-            colorChange('note', 'black')
+            colorChange('note', 'var(--lowlight)')
             pulseOff('note', '100%');
         }, "200");
     }
@@ -74,9 +92,16 @@ function returnHome(){
     reset();
 }
 
-function scoreMultiplier(){
+function scoreMultiplier(reset){
     if(streak%STREAK_FACTOR === 0 && multiplier < MULTIPLIER_MAX){
         multiplier++;
+        pulseOn('multiplier', '150%')
+        setTimeout(() => {
+            pulseOff('multiplier', '100%');
+        }, "2000");
+    }
+    if(reset){
+        document.getElementById('multiplier').style.border = 'var(--multiplier-border-1x)';
     }
 }
 
@@ -117,7 +142,7 @@ function displayLetter() {
 function checkInput() {
     var input = document.getElementById('note-guess').value;
     document.getElementById('gameScoreSpan').innerHTML = score;
-    document.getElementById('multiplierHeader').style.border = 'var(--multiplier-border-' + String(multiplier) +'x)';
+    document.getElementById('multiplier').style.border = 'var(--multiplier-border-' + String(multiplier) +'x)';
     if(input == note){
         score = score + 1*multiplier;
         noteHit++;
@@ -128,11 +153,13 @@ function checkInput() {
         noteStatus = 0;
         if(score > 0){
         score--;
+        multiplier = 1;
+        scoreMultiplier(true);
         }else{
             score = score;
         }
     }
     noteStyling(noteStatus);
-    scoreMultiplier();
+    scoreMultiplier(false);
     displayLetter();
 }
